@@ -1,0 +1,17 @@
+apply plugin: 'io.gitlab.arturbosch.detekt'
+
+apply from: "$rootDir/gradle/versions.gradle"
+
+detekt {
+    version = "$detektVersion"
+    profile("main") {
+        input = "$project.projectDir/src/main/kotlin"
+        config = "$rootDir/detekt/default-detekt-config.yml"
+        filters = ".*test.*,.*/resources/.*,.*/tmp/.*"
+        output = "$project.projectDir/build/detekt"
+    }
+}
+
+afterEvaluate {
+    check.dependsOn 'detektCheck'
+}
