@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="container_padding">16dp</dimen>
+    <dimen name="card_content_margin">8dp</dimen>
+    <dimen name="image_size">120dp</dimen>
+    <dimen name="match_constraint">0dp</dimen>
+    <dimen name="check_circle_text_padding">8dp</dimen>
+</resources>
