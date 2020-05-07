@@ -66,6 +66,6 @@ easy integration with Architecture Component's `ViewModel` class so it simplifie
 - Kotlin Coroutines
 
 ## Testing
-Codebase is testes using two different strategies:
+Codebase is tested using two different strategies:
 1. Business logic and Repository is tested using jUnit 5 tests.
 2. Rendering logic is tested using Robolectric jUnit 4 tests.
