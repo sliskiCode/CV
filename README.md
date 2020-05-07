@@ -5,7 +5,7 @@
 - [3rd party libraries](#main-3rd-party-libraries)
 - [Known issues](#testing)
 
-<img src="screenshot.png" alt="drawing" width="200"/>
+<img src="https://github.com/sliskiCode/CV/blob/master/static/screenshot.png?raw=true" alt="drawing" width="200"/>
 
 ## Overview
 Application that downloads and renders CV of mine.
