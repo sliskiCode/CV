@@ -2,10 +2,10 @@
 
 - [Overview](#overview)
 - [Architecture](#architecture)
-- [3rd party libraries](#3rd-party-libraries)
-- [Known issues](#known-issues)
+- [3rd party libraries](#main-3rd-party-libraries)
+- [Known issues](#testing)
 
-![](static/screenshot.png)
+![](static/screenshot.png =250x)
 
 ## Overview
 Application that downloads and renders CV of mine.
