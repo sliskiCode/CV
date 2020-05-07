@@ -2,8 +2,8 @@
 
 - [Overview](#overview)
 - [Architecture](#architecture)
-- [3rd party libraries](#main-3rd-party-libraries)
-- [Known issues](#testing)
+- [Main 3rd party libraries](#main-3rd-party-libraries)
+- [Testing](#testing)
 
 <img src="https://github.com/sliskiCode/CV/blob/master/static/screenshot.png?raw=true" alt="drawing" width="350"/>
 
