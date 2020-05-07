@@ -15,13 +15,7 @@ Application that downloads and renders CV of mine.
 
 ## Architecture
 
-### Packaging
-The code is structured using "package by feature" approach. The main reason for such packaging
-is to imitate app domain structure into the code.
-
-### Dependency Inversion
-Dependency Inversion is implemented with Koin dependency injection framework. It simplifies separation of objects creations and their usages. In addition Koin has a pretty
-easy integration with Architecture Component's `ViewModel` class so it simplifies gluing it with view layer.
+### Flow diagram
 
 ![](static/overview.png)
 
@@ -48,6 +42,14 @@ Renderer is a simple class that uses `RecyclerView` as main render engine. It ha
 
 Render function has to be pure! It cannot use any properties for the outside of it's scope. To simplify working with
 `RecyclerView` I use Groupie library. It also makes rendering logic more declarative.
+
+### Packaging
+The code is structured using "package by feature" approach. The main reason for such packaging
+is to imitate app domain structure into the code.
+
+### Dependency Inversion
+Dependency Inversion is implemented with Koin dependency injection framework. It simplifies separation of objects creations and their usages. In addition Koin has a pretty
+easy integration with Architecture Component's `ViewModel` class so it simplifies gluing it with view layer.
 
 ## Main 3rd party libraries
 
