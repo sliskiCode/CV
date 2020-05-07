@@ -5,7 +5,7 @@
 - [3rd party libraries](#main-3rd-party-libraries)
 - [Known issues](#testing)
 
-![](static/screenshot.png =250x)
+<img src="screenshot.png" alt="drawing" width="200"/>
 
 ## Overview
 Application that downloads and renders CV of mine.
