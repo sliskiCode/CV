@@ -11,7 +11,7 @@ Application that downloads and renders CV of mine.
 <img src="https://github.com/sliskiCode/CV/blob/master/static/screenshot.png?raw=true" alt="drawing" width="350"/>
 
 ### Features
-+ Displaying list of CV items (photo, summary, personal development, job positions and hobbies). 
+- Displaying list of CV items (photo, summary, personal development, job positions and hobbies). 
 
 ## Architecture
 
@@ -37,8 +37,8 @@ Pure function that reduces current state of the screen using transformation stat
 
 ### Renderer
 [Renderer](../../blob/master/app/src/main/kotlin/com/slesarew/cv/cvscreen/view/renderer/CVRenderer.kt) is a simple class that uses `RecyclerView` as main render engine. It has two main responsibilities:
-1. Setup `RecyclerView` with correct Adapter class.
-2. Transform immutable view state to Adapter items and render them on the screen.
+- Setup `RecyclerView` with correct Adapter class.
+- Transform immutable view state to Adapter items and render them on the screen.
 
 Render function has to be pure! It cannot use any properties for the outside of it's scope. To simplify working with
 `RecyclerView` I use [Groupie](https://github.com/lisawray/groupie) library. It also makes rendering logic more declarative.
@@ -53,8 +53,8 @@ is to imitate app domain structure into the code.
 
 ### Modularisation
 Project has two modules:
-1. `:mvi` module that contains helper classes for unidirectional flow architecture. (android library module)
-2. `:app` module that contains the application logic and screens. (android application module)
+- `:mvi` module that contains helper classes for unidirectional flow architecture. (android library module)
+- `:app` module that contains the application logic and screens. (android application module)
 
 ## Main 3rd party libraries
 
@@ -79,5 +79,5 @@ Project has two modules:
 
 ## Testing strategy
 Codebase is tested using two different strategies:
-1. Business logic and Repository is tested using jUnit 5 tests.
-2. Rendering logic is tested using Robolectric jUnit 4 tests.
+- Business logic and Repository is tested using jUnit 5 tests.
+- Rendering logic is tested using Robolectric jUnit 4 tests.
