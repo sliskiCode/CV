@@ -17,7 +17,7 @@ Application that downloads and renders CV of mine.
 
 ### Flow diagram
 
-![](static/overview.png)
+![](static/diagram.png)
 
 ### View
 View(Activity) is responsible for gluing `ViewModel` class with rendering function. In addition it is responsible for sending intention actions that can be anything like
