@@ -27,7 +27,7 @@ user interaction or system callbacks. View should not contain any rendering, bus
 `ViewModel` has definition of supported intentions. Every action that `View` sends to the `ViewModel` has to be declared as intention.
 Intention reacts to the action with action transformation that produces unique status. In our case transformation is a backend call that 
 downloads CV data. Transformed data are not ready to be displayed so intention uses reduction function to generate new immutable state. New
-state is pushed to `View` layer and renders there. All intention actions are transformed asynchronously and that is baked into [ConnectableViewModel][mvi/src/main/kotlin/com/slesarew/mvi/ConnectableViewModel].
+state is pushed to `View` layer and renders there. All intention actions are transformed asynchronously and that is baked into [ConnectableViewModel](../../mvi/src/main/kotlin/com/slesarew/mvi/ConnectableViewModel.kt).
 
 #### Transformer
 Function that transform Action to Status data. Can be a backend call that returns data or fire and forget command like database save/update operation.
