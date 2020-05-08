@@ -6,4 +6,7 @@
     <string name="personal_development">Personal development</string>
     <string name="unknown_host_message">Error occurs \n Check your internet connection</string>
     <string name="json_syntax_message">Error occurs \n Server issue</string>
+    <string name="medium">Medium</string>
+    <string name="stackoverflow">Stackoverflow</string>
+    <string name="you_tube">YouTube</string>
 </resources>
