@@ -84,7 +84,7 @@ fun DependencyHandlerScope.library() =
     with(ProjectDependencies) {
         implementation(retrofit)
         implementation(retrofitConverterGson)
-        implementation(glide)
+        implementation(coil)
         implementation(koin)
         implementation(groupie)
         implementation(groupieKotlin)

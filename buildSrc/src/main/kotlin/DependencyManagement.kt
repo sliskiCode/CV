@@ -26,7 +26,7 @@ object Versions {
 
     // Library
     const val retrofitVersion = "2.6.0"
-    const val glideVersion = "4.11.0"
+    const val coilVersion = "0.10.1"
     const val koinVersion = "2.1.5"
     const val groupieVersion = "2.8.0"
 
@@ -65,7 +65,7 @@ object ProjectDependencies {
     // Library
     const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofitVersion}"
     const val retrofitConverterGson = "com.squareup.retrofit2:converter-gson:${Versions.retrofitVersion}"
-    const val glide = "com.github.bumptech.glide:glide:${Versions.glideVersion}"
+    const val coil = "io.coil-kt:coil:${Versions.coilVersion}"
     const val koin = "org.koin:koin-android-viewmodel:${Versions.koinVersion}"
     const val groupie = "com.xwray:groupie:${Versions.groupieVersion}"
     const val groupieKotlin = "com.xwray:groupie-kotlin-android-extensions:${Versions.groupieVersion}"
