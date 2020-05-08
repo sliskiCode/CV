@@ -36,7 +36,7 @@ Function that transform Action to Status data. Can be a backend call that return
 Pure function that reduces current state of the screen using transformation status data.
 
 ### Renderer
-Renderer is a simple class that uses `RecyclerView` as main render engine. It has two main responsibilities:
+[Renderer](../../blob/master/app/src/main/kotlin/com/slesarew/cv/cvscreen/view/renderer/CVRenderer.kt) is a simple class that uses `RecyclerView` as main render engine. It has two main responsibilities:
 1. Setup `RecyclerView` with correct Adapter class.
 2. Transform immutable view state to Adapter items and render them on the screen.
 
