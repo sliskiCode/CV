@@ -52,7 +52,7 @@ class CVViewModelTest {
         val tested = CVViewModel(transformerWithData(data), CVReducers(), sideEffects())
         val states = tested.connectInTest()
 
-        tested.sendAction(CVAction.OnScreenCreateAction)
+        tested.sendAction(OnScreenCreateAction)
 
         assertThat(states[0]).isEqualTo(CVState())
         assertThat(states[1]).isEqualTo(
@@ -98,7 +98,7 @@ class CVViewModelTest {
         val tested = CVViewModel(transformerWithError(error), CVReducers(), sideEffects())
         val states = tested.connectInTest()
 
-        tested.sendAction(CVAction.OnScreenCreateAction)
+        tested.sendAction(OnScreenCreateAction)
 
         assertThat(states[0]).isEqualTo(CVState())
         assertThat(states[1]).isEqualTo(
@@ -151,7 +151,7 @@ private fun transformerWithError(throwable: Throwable) = CVTransformers(
     mock { onBlocking { fetchCVData() }.thenAnswer { throw throwable } },
     mock {
         on { getString(R.string.unknown_host_message) }.thenReturn("Error")
-        on { getString(R.string.json_syntax_message) }.thenReturn("Error")
+        on { getString(R.string.server_issue_message) }.thenReturn("Error")
     }
 )
 

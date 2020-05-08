@@ -19,21 +19,21 @@ data class PersonalDevelopmentItem(private val personalDevelopment: PersonalDeve
     override fun getLayout() = R.layout.personal_development_item
 
     override fun createViewHolder(itemView: View): GroupieViewHolder {
-        val createViewHolder = super.createViewHolder(itemView)
+        val viewHolder = super.createViewHolder(itemView)
 
         val space = itemView.context.resources.getDimension(R.dimen.card_content_margin).toInt()
         val decoration = SpaceItemDecoration(verticalSpacing = space)
-        createViewHolder.items.addItemDecoration(decoration)
+        viewHolder.items.addItemDecoration(decoration)
 
-        createViewHolder.items
+        viewHolder.items
             .apply {
                 layoutManager = LinearLayoutManager(context)
-                adapter = GroupAdapter<com.xwray.groupie.GroupieViewHolder>().apply {
+                adapter = GroupAdapter<GroupieViewHolder>().apply {
                     add(section)
                 }
             }
 
-        return createViewHolder
+        return viewHolder
     }
 
     override fun bind(viewHolder: GroupieViewHolder, position: Int) {

@@ -12,8 +12,6 @@ data class CheckItem(private val description: String) : Item() {
     override fun getLayout() = R.layout.check_item
 
     override fun bind(viewHolder: GroupieViewHolder, position: Int) {
-        with(viewHolder.containerView) {
-            description_text.text = description
-        }
+        viewHolder.containerView.description_text.text = description
     }
 }
