@@ -7,6 +7,7 @@ CI](https://circleci.com/gh/sliskiCode/CV.svg?style=svg)](https://circleci.com/g
 - [Architecture](#architecture)
 - [Main 3rd party libraries](#main-3rd-party-libraries)
 - [Testing](#testing)
+- [Prerequisites](#prerequisites)
 
 ## Overview
 Application that downloads and renders CV of mine.
