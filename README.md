@@ -39,8 +39,8 @@ A pure function that reduces the current state of the screen using transformatio
 
 ### Renderer
 A [Renderer](../../blob/master/app/src/main/kotlin/com/slesarew/cv/cvscreen/view/renderer/CVRenderer.kt) is a simple class that uses `RecyclerView` as the main render engine. It has two main responsibilities:
-- Setup `RecyclerView` with correct Adapter class.
-- Transform immutable view state to Adapter items and render them on the screen.
+- Setup `RecyclerView` with correct adapter class.
+- Transform immutable view state to adapter items and render them on the screen.
 
 Render function has to be pure! It cannot use any properties outside of its scope. To simplify working with
 `RecyclerView` I use [Groupie](https://github.com/lisawray/groupie) library. It also makes rendering logic more declarative.
@@ -55,8 +55,8 @@ is to imitate app domain structure into the code.
 
 ### Modularisation
 Project has two modules:
-- `:mvi` module that contains helper classes for unidirectional flow architecture. (android library module)
-- `:app` module that contains the application logic and screens. (android application module)
+- `:mvi` module that contains helper classes for unidirectional flow architecture (Android library module).
+- `:app` module that contains the application logic and screens (Android application module).
 
 ## Main 3rd party libraries
 
