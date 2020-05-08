@@ -11,7 +11,7 @@ buildscript {
     }
 }
 
-apply(from = "gradle/script/detekt.gradle.kts")
+apply(from = "gradle/scripts/detekt.gradle.kts")
 
 subprojects {
     repositories {

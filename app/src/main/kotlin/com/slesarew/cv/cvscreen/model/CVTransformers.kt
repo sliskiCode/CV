@@ -14,6 +14,7 @@ class CVTransformers(
     private val context: Context
 ) {
 
+    @Suppress("TooGenericExceptionCaught")
     fun loadCVData(): Transformation = { action ->
         require(action is CVAction.OnScreenCreateAction)
 
