@@ -41,7 +41,7 @@ Pure function that reduces current state of the screen using transformation stat
 2. Transform immutable view state to Adapter items and render them on the screen.
 
 Render function has to be pure! It cannot use any properties for the outside of it's scope. To simplify working with
-`RecyclerView` I use Groupie library. It also makes rendering logic more declarative.
+`RecyclerView` I use [Groupie](https://github.com/lisawray/groupie) library. It also makes rendering logic more declarative.
 
 ### Dependency Inversion
 Dependency Inversion is implemented with Koin dependency injection framework. It simplifies separation of objects creations and their usages. In addition Koin has a pretty
@@ -77,7 +77,7 @@ Project has two modules:
 - [jUnit4](https://junit.org/junit4/)
 - [Robolectric](https://github.com/robolectric/robolectric)
 
-## Testing
+## Testing strategy
 Codebase is tested using two different strategies:
 1. Business logic and Repository is tested using jUnit 5 tests.
 2. Rendering logic is tested using Robolectric jUnit 4 tests.
