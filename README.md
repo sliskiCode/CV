@@ -27,7 +27,7 @@ user interaction or system callbacks. View should not contain any rendering, bus
 `ViewModel` has definition of supported intentions. Every action that `View` sends to the `ViewModel` has to be declared as intention.
 Intention reacts to the action with action transformation that produces unique status. In our case transformation is a backend call that 
 downloads CV data. Transformed data are not ready to be displayed so intention uses reduction function to generate new immutable state. New
-state is pushed to `View` layer and renders there. All intention actions are transformed asynchronously and that is baked into ConnectableViewModel.kt.
+state is pushed to `View` layer and renders there. All intention actions are transformed asynchronously and that is baked into [ConnectableViewModel][mvi/src/main/kotlin/com/slesarew/mvi/ConnectableViewModel].
 
 #### Transformer
 Function that transform Action to Status data. Can be a backend call that returns data or fire and forget command like database save/update operation.
@@ -43,13 +43,18 @@ Renderer is a simple class that uses `RecyclerView` as main render engine. It ha
 Render function has to be pure! It cannot use any properties for the outside of it's scope. To simplify working with
 `RecyclerView` I use Groupie library. It also makes rendering logic more declarative.
 
+### Dependency Inversion
+Dependency Inversion is implemented with Koin dependency injection framework. It simplifies separation of objects creations and their usages. In addition Koin has a pretty
+easy integration with Architecture Component's `ViewModel` class so it simplifies gluing it with view layer.
+
 ### Packaging
 The code is structured using "package by feature" approach. The main reason for such packaging
 is to imitate app domain structure into the code.
 
-### Dependency Inversion
-Dependency Inversion is implemented with Koin dependency injection framework. It simplifies separation of objects creations and their usages. In addition Koin has a pretty
-easy integration with Architecture Component's `ViewModel` class so it simplifies gluing it with view layer.
+### Modularisation
+Project has two modules:
+1. `:mvi` module that contains helper classes for unidirectional flow architecture. (android library module)
+2. `:app` module that contains the application logic and screens. (android application module)
 
 ## Main 3rd party libraries
 
