@@ -5,7 +5,10 @@ import com.google.gson.JsonSyntaxException
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.slesarew.cv.R
-import com.slesarew.cv.cvscreen.model.CVAction.*
+import com.slesarew.cv.cvscreen.model.CVAction.OnMediumClickedAction
+import com.slesarew.cv.cvscreen.model.CVAction.OnScreenCreateAction
+import com.slesarew.cv.cvscreen.model.CVAction.OnStackOverflowClickedAction
+import com.slesarew.cv.cvscreen.model.CVAction.OnYouTubeClickedAction
 import com.slesarew.cv.helpers.ArgumentsListProvider
 import com.slesarew.cv.helpers.CoroutineExtension
 import com.slesarew.cv.repository.model.CVData

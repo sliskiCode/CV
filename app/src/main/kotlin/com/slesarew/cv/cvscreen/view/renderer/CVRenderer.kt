@@ -6,7 +6,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.slesarew.cv.R
 import com.slesarew.cv.cvscreen.model.CVState
 import com.slesarew.cv.cvscreen.model.Status
-import com.slesarew.cv.cvscreen.view.item.*
+import com.slesarew.cv.cvscreen.view.item.ErrorItem
+import com.slesarew.cv.cvscreen.view.item.HeaderItem
+import com.slesarew.cv.cvscreen.view.item.JobPositionItem
+import com.slesarew.cv.cvscreen.view.item.LoadingItem
+import com.slesarew.cv.cvscreen.view.item.PersonalDevelopmentItem
+import com.slesarew.cv.cvscreen.view.item.SpaceItemDecoration
+import com.slesarew.cv.cvscreen.view.item.TitleBodyItem
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import com.xwray.groupie.Section

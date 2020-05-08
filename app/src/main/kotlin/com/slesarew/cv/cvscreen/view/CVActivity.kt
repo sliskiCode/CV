@@ -6,7 +6,10 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.slesarew.cv.R
 import com.slesarew.cv.cvscreen.model.CVAction
-import com.slesarew.cv.cvscreen.model.CVAction.*
+import com.slesarew.cv.cvscreen.model.CVAction.OnMediumClickedAction
+import com.slesarew.cv.cvscreen.model.CVAction.OnScreenCreateAction
+import com.slesarew.cv.cvscreen.model.CVAction.OnStackOverflowClickedAction
+import com.slesarew.cv.cvscreen.model.CVAction.OnYouTubeClickedAction
 import com.slesarew.cv.cvscreen.model.CVViewModel
 import com.slesarew.cv.cvscreen.view.renderer.CVRenderer
 import kotlinx.android.synthetic.main.activity_content.*

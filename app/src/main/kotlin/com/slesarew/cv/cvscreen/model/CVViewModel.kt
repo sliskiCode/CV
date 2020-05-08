@@ -1,6 +1,9 @@
 package com.slesarew.cv.cvscreen.model
 
-import com.slesarew.cv.cvscreen.model.CVAction.*
+import com.slesarew.cv.cvscreen.model.CVAction.OnMediumClickedAction
+import com.slesarew.cv.cvscreen.model.CVAction.OnScreenCreateAction
+import com.slesarew.cv.cvscreen.model.CVAction.OnStackOverflowClickedAction
+import com.slesarew.cv.cvscreen.model.CVAction.OnYouTubeClickedAction
 import com.slesarew.mvi.ConnectableViewModel
 
 class CVViewModel(
