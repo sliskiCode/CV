@@ -1,6 +1,8 @@
 package com.slesarew.mvi
 
 import com.google.common.truth.Truth.assertThat
+import com.nhaarman.mockitokotlin2.mock
+import com.nhaarman.mockitokotlin2.verify
 import com.slesarew.mvi.TestAction.GoTo
 import com.slesarew.mvi.TestAction.GoTo2
 import kotlinx.coroutines.runBlocking
@@ -65,5 +67,19 @@ class ContainerTest {
 
             assertThat(runCatching.isFailure).isTrue()
         }
+    }
+
+    @Test
+    fun `runs action as side effect`() {
+        val function = mock<(TestState) -> Unit>()
+        tested.sideEffectIntentionOn(action = GoTo::class) {
+            sideEffect = function
+        }
+
+        runBlocking {
+            tested.consume(TestState(), GoTo) {}
+        }
+
+        verify(function).invoke(TestState())
     }
 }

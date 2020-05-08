@@ -6,7 +6,8 @@ data class CVState(
     val summaryData: SummaryData = SummaryData(),
     val jobPositions: List<JobPosition> = emptyList(),
     val personalDevelopment: PersonalDevelopment = PersonalDevelopment(),
-    val hobbiesData: HobbiesData = HobbiesData()
+    val hobbiesData: HobbiesData = HobbiesData(),
+    val links: LinksData = LinksData()
 )
 
 data class HeaderData(
@@ -33,6 +34,12 @@ data class PersonalDevelopment(
 
 data class HobbiesData(
     val hobbies: String = ""
+)
+
+data class LinksData(
+    val mediumUrl: String = "",
+    val stackOverflowUrl: String = "",
+    val youtubeUrl: String = ""
 )
 
 sealed class Status {

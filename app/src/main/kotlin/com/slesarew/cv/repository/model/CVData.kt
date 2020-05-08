@@ -11,5 +11,8 @@ data class CVData(
     @SerializedName("summary") val summary: String,
     @SerializedName("positions") val positions: List<Position>,
     @SerializedName("personal_development") val personalDevelopment: List<PersonalDevelopment>,
-    @SerializedName("hobbies") val hobbies: String
+    @SerializedName("hobbies") val hobbies: String,
+    @SerializedName("medium_url") val mediumUrl: String,
+    @SerializedName("stack_overflow_url") val stackOverflowUrl: String,
+    @SerializedName("you_tube_url") val youtubeUrl: String
 )

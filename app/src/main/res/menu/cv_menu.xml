@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/medium"
+        android:icon="@drawable/ic_medium"
+        android:title="@string/medium"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/youtube"
+        android:icon="@drawable/ic_you_tube"
+        android:title="@string/you_tube"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/stackoverflow"
+        android:icon="@drawable/ic_stackoverflow"
+        android:title="@string/stackoverflow"
+        app:showAsAction="ifRoom" />
+</menu>

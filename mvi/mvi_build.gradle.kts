@@ -65,4 +65,6 @@ fun DependencyHandlerScope.test() =
         testImplementation(junitJupiterApi)
         testRuntimeOnly(junitJupiterEngine)
         testImplementation(googleTruth)
+        testImplementation(mockito)
+        testImplementation(mockitoKotlin)
     }

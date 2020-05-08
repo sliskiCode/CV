@@ -22,6 +22,7 @@ object Versions {
     const val viewModelVersion = "2.2.0"
     const val constraintLayoutVersion = "2.0.0-beta4"
     const val cardViewVersion = "1.0.0"
+    const val browserVersion = "1.2.0"
 
     // Library
     const val retrofitVersion = "2.6.0"
@@ -59,6 +60,7 @@ object ProjectDependencies {
     const val viewModelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.viewModelVersion}"
     const val constraintLayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintLayoutVersion}"
     const val cardView = "androidx.cardview:cardview:${Versions.cardViewVersion}"
+    const val browser = "androidx.browser:browser:${Versions.browserVersion}"
 
     // Library
     const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofitVersion}"

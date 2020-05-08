@@ -3,7 +3,9 @@ package com.slesarew.cv.cvscreen.model
 import com.google.common.truth.Truth.assertThat
 import com.google.gson.JsonSyntaxException
 import com.nhaarman.mockitokotlin2.mock
+import com.nhaarman.mockitokotlin2.verify
 import com.slesarew.cv.R
+import com.slesarew.cv.cvscreen.model.CVAction.*
 import com.slesarew.cv.helpers.ArgumentsListProvider
 import com.slesarew.cv.helpers.CoroutineExtension
 import com.slesarew.cv.repository.model.CVData
@@ -39,12 +41,15 @@ class CVViewModelTest {
                 description = "Being Jake"
             )
         ),
-        hobbies = "programming, being a nerd"
+        hobbies = "programming, being a nerd",
+        mediumUrl = "https://medium.com/@jakewharton",
+        stackOverflowUrl = "https://stackoverflow.com/users/132047/jake-wharton",
+        youtubeUrl = "https://www.youtube.com/results?search_query=jake+wharton"
     )
 
     @Test
     fun `loads data on OnScreenCreateAction`() {
-        val tested = CVViewModel(transformerWithData(data), CVReducers())
+        val tested = CVViewModel(transformerWithData(data), CVReducers(), sideEffects())
         val states = tested.connectInTest()
 
         tested.sendAction(CVAction.OnScreenCreateAction)
@@ -77,6 +82,11 @@ class CVViewModelTest {
                 ),
                 hobbiesData = HobbiesData(
                     hobbies = "programming, being a nerd"
+                ),
+                links = LinksData(
+                    mediumUrl = "https://medium.com/@jakewharton",
+                    stackOverflowUrl = "https://stackoverflow.com/users/132047/jake-wharton",
+                    youtubeUrl = "https://www.youtube.com/results?search_query=jake+wharton"
                 )
             )
         )
@@ -85,7 +95,7 @@ class CVViewModelTest {
     @ParameterizedTest
     @ArgumentsSource(ErrorProvider::class)
     fun `produces error state`(error: Throwable) {
-        val tested = CVViewModel(transformerWithError(error), CVReducers())
+        val tested = CVViewModel(transformerWithError(error), CVReducers(), sideEffects())
         val states = tested.connectInTest()
 
         tested.sendAction(CVAction.OnScreenCreateAction)
@@ -96,6 +106,39 @@ class CVViewModelTest {
                 status = Status.Error("Error")
             )
         )
+    }
+
+    @Test
+    fun `navigates to medium page`() {
+        val navigateToMediumPage = mock<(CVState) -> Unit>()
+        val sideEffects = sideEffects(navigateToMediumPage = navigateToMediumPage)
+        val tested = CVViewModel(transformerWithData(data), CVReducers(), sideEffects)
+
+        tested.sendAction(OnMediumClickedAction)
+
+        verify(navigateToMediumPage).invoke(CVState())
+    }
+
+    @Test
+    fun `navigates to stack overflow page`() {
+        val navigateToStackOverflow = mock<(CVState) -> Unit>()
+        val sideEffects = sideEffects(navigateToStackOverflow = navigateToStackOverflow)
+        val tested = CVViewModel(transformerWithData(data), CVReducers(), sideEffects)
+
+        tested.sendAction(OnStackOverflowClickedAction)
+
+        verify(navigateToStackOverflow).invoke(CVState())
+    }
+
+    @Test
+    fun `navigates to you tube page`() {
+        val navigateToYouTube = mock<(CVState) -> Unit>()
+        val sideEffects = sideEffects(navigateToYouTube = navigateToYouTube)
+        val tested = CVViewModel(transformerWithData(data), CVReducers(), sideEffects)
+
+        tested.sendAction(OnYouTubeClickedAction)
+
+        verify(navigateToYouTube).invoke(CVState())
     }
 }
 
@@ -111,6 +154,16 @@ private fun transformerWithError(throwable: Throwable) = CVTransformers(
         on { getString(R.string.json_syntax_message) }.thenReturn("Error")
     }
 )
+
+private fun sideEffects(
+    navigateToMediumPage: (CVState) -> Unit = {},
+    navigateToStackOverflow: (CVState) -> Unit = {},
+    navigateToYouTube: (CVState) -> Unit = {}
+) = mock<CVSideEffects> {
+    on { navigateToMediumPage() }.thenReturn(navigateToMediumPage)
+    on { navigateToStackOverflow() }.thenReturn(navigateToStackOverflow)
+    on { navigateToYouTube() }.thenReturn(navigateToYouTube)
+}
 
 class ErrorProvider : ArgumentsListProvider(
     UnknownHostException(),

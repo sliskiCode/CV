@@ -75,6 +75,7 @@ fun DependencyHandlerScope.android() = with(ProjectDependencies) {
     implementation(viewModelKtx)
     implementation(constraintLayout)
     implementation(cardView)
+    implementation(browser)
 }
 
 fun DependencyHandlerScope.project() = implementation(project(":mvi"))

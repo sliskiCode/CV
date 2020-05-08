@@ -18,7 +18,7 @@ class CVReducers {
                         photoUrl = data.photoUrl
                     ),
                     summaryData = state.summaryData.copy(
-                        summary = data.summary.toString()
+                        summary = data.summary
                     ),
                     jobPositions = data.positions.map { it.toPresentationModel() },
                     personalDevelopment = state.personalDevelopment.copy(
@@ -26,6 +26,11 @@ class CVReducers {
                     ),
                     hobbiesData = state.hobbiesData.copy(
                         hobbies = status.cvData.hobbies
+                    ),
+                    links = state.links.copy(
+                        mediumUrl = status.cvData.mediumUrl,
+                        stackOverflowUrl = status.cvData.stackOverflowUrl,
+                        youtubeUrl = status.cvData.youtubeUrl
                     )
                 )
             }
