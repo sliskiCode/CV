@@ -57,21 +57,21 @@ Project has two modules:
 
 ## Main 3rd party libraries
 
-#### Rendering
+##### Rendering
 - [Groupie](https://github.com/lisawray/groupie)
 - [Glide](https://github.com/bumptech/glide)
 
-#### Networking
+##### Networking
 - [Retrofit](https://github.com/square/retrofit)
 - [Gson](https://github.com/google/gson)
 
-#### Dependency injection
+##### Dependency injection
 - [Koin](https://github.com/InsertKoinIO/koin)
 
-#### Asynchronous programming
+##### Asynchronous programming
 - [Kotlin Coroutines](https://github.com/Kotlin/kotlinx.coroutines)
 
-#### Testing
+##### Testing
 - [jUnit5](https://junit.org/junit5/docs/current/user-guide/)
 - [jUnit4](https://junit.org/junit4/)
 - [Robolectric](https://github.com/robolectric/robolectric)
