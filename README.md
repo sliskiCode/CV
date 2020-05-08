@@ -59,27 +59,6 @@ Project has two modules:
 - `:mvi` module that contains helper classes for unidirectional flow architecture (Android library module).
 - `:app` module that contains the application logic and screens (Android application module).
 
-## Main 3rd party libraries
-
-##### Rendering
-- [Groupie](https://github.com/lisawray/groupie)
-- [Glide](https://github.com/bumptech/glide)
-
-##### Networking
-- [Retrofit](https://github.com/square/retrofit)
-- [Gson](https://github.com/google/gson)
-
-##### Dependency injection
-- [Koin](https://github.com/InsertKoinIO/koin)
-
-##### Asynchronous programming
-- [Kotlin Coroutines](https://github.com/Kotlin/kotlinx.coroutines)
-
-##### Testing
-- [jUnit5](https://junit.org/junit5/docs/current/user-guide/)
-- [jUnit4](https://junit.org/junit4/)
-- [Robolectric](https://github.com/robolectric/robolectric)
-
 ## Testing strategy
 Codebase is tested using two different strategies:
 - Business logic and Repository is tested using jUnit 5 tests.
@@ -89,3 +68,24 @@ Codebase is tested using two different strategies:
 Stable build with: 
 Android Studio 3.6.2
 Build #AI-192.7142.36.36.6308749, built on March 18, 2020
+
+## Main 3rd party libraries
+
+##### Rendering
+- [Groupie](https://github.com/lisawray/groupie) for declarative UI rendering.
+- [Coil](https://github.com/coil-kt/coil) for loading remote images.
+
+##### Networking
+- [Retrofit](https://github.com/square/retrofit) for declaring API as regular interfaces.
+- [Gson](https://github.com/google/gson) for object serialization. 
+
+##### Dependency injection
+- [Koin](https://github.com/InsertKoinIO/koin) to separate object creation from object usages.
+
+##### Asynchronous programming
+- [Kotlin Coroutines](https://github.com/Kotlin/kotlinx.coroutines) to run transformations and reduction asynchronously.
+
+##### Testing
+- [jUnit5](https://junit.org/junit5/docs/current/user-guide/)
+- [jUnit4](https://junit.org/junit4/)
+- [Robolectric](https://github.com/robolectric/robolectric)
