@@ -11,17 +11,20 @@ private typealias SideEffect = (CVState) -> Unit
 class CVSideEffects(private val activity: Activity) {
 
     fun navigateToMediumPage(): SideEffect =
-        { state -> if (state.links.mediumUrl.isNotEmpty()) openExternalURL(state.links.mediumUrl) }
+        { state -> openExternalURL(state.links.mediumUrl) }
 
     fun navigateToStackOverflow(): SideEffect =
-        { state -> if (state.links.stackOverflowUrl.isNotEmpty()) openExternalURL(state.links.stackOverflowUrl) }
+        { state -> openExternalURL(state.links.stackOverflowUrl) }
 
     fun navigateToYouTube(): SideEffect =
-        { state -> if (state.links.youtubeUrl.isNotEmpty()) openExternalURL(state.links.youtubeUrl) }
+        { state -> openExternalURL(state.links.youtubeUrl) }
 
-    private fun openExternalURL(url: String) =
-        CustomTabsIntent.Builder()
-            .setToolbarColor(getColor(activity, R.color.colorPrimary))
-            .build()
-            .launchUrl(activity, Uri.parse(url))
+    private fun openExternalURL(url: String) {
+        if (url.isNotEmpty()) {
+            CustomTabsIntent.Builder()
+                .setToolbarColor(getColor(activity, R.color.colorPrimary))
+                .build()
+                .launchUrl(activity, Uri.parse(url))
+        }
+    }
 }
