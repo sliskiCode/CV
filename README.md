@@ -21,31 +21,29 @@ Application that downloads and renders CV of mine.
 ![](static/diagram.png)
 
 ### View
-View(Activity) is responsible for gluing `ViewModel` class with rendering function. In addition it is responsible for sending intention actions that can be anything like
-user interaction or system callbacks. View should not contain any rendering, business logic.
+View(Activity) is responsible for gluing `ViewModel` class with rendering function. Besides, it is responsible for sending intention actions that can be anything like user interaction or system callbacks. The `View` should not contain any rendering, business logic.
 
 ### ViewModel
-`ViewModel` has definition of supported intentions. Every action that `View` sends to the `ViewModel` has to be declared as intention.
-Intention reacts to the action with action transformation that produces unique status. In our case transformation is a backend call that 
-downloads CV data. Transformed data are not ready to be displayed so intention uses reduction function to generate new immutable state. New
-state is pushed to `View` layer and renders there. All intention actions are transformed asynchronously and that is baked into [ConnectableViewModel](../../blob/master/mvi/src/main/kotlin/com/slesarew/mvi/ConnectableViewModel.kt).
+`ViewModel` has a definition of supported intentions. Every action that `View` sends to the `ViewModel` has to be declared as intention.
+Intention reacts to the action with action transformation that produces unique status. In our case transformation is a backend call that downloads CV data. Transformed data are not ready to be displayed so intention uses reduction function to generate new immutable state. A new
+state is pushed to the `View` layer and renders there. All intention actions are transformed asynchronously and that is baked into [ConnectableViewModel](../../blob/master/mvi/src/main/kotlin/com/slesarew/mvi/ConnectableViewModel.kt).
 
 #### Transformer
-Function that transform Action to Status data. Can be a backend call that returns data or fire and forget command like database save/update operation.
+A function that transforms Action to Status data. Can be a backend call that returns data or fire and forget command like database save/update operation.
 
 #### Reducer
-Pure function that reduces current state of the screen using transformation status data.
+A pure function that reduces the current state of the screen using transformation status data.
 
 ### Renderer
-[Renderer](../../blob/master/app/src/main/kotlin/com/slesarew/cv/cvscreen/view/renderer/CVRenderer.kt) is a simple class that uses `RecyclerView` as main render engine. It has two main responsibilities:
+A [Renderer](../../blob/master/app/src/main/kotlin/com/slesarew/cv/cvscreen/view/renderer/CVRenderer.kt) is a simple class that uses `RecyclerView` as the main render engine. It has two main responsibilities:
 - Setup `RecyclerView` with correct Adapter class.
 - Transform immutable view state to Adapter items and render them on the screen.
 
-Render function has to be pure! It cannot use any properties for the outside of it's scope. To simplify working with
+Render function has to be pure! It cannot use any properties outside of its scope. To simplify working with
 `RecyclerView` I use [Groupie](https://github.com/lisawray/groupie) library. It also makes rendering logic more declarative.
 
 ### Dependency Inversion
-Dependency Inversion is implemented with Koin dependency injection framework. It simplifies separation of objects creations and their usages. In addition Koin has a pretty
+Dependency Inversion is implemented with the Koin dependency injection framework. It simplifies the separation of objects' creations and their usages. In addition, Koin has a pretty
 easy integration with Architecture Component's `ViewModel` class so it simplifies gluing it with view layer.
 
 ### Packaging
