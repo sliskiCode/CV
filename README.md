@@ -5,10 +5,10 @@
 - [Main 3rd party libraries](#main-3rd-party-libraries)
 - [Testing](#testing)
 
-<img src="https://github.com/sliskiCode/CV/blob/master/static/screenshot.png?raw=true" alt="drawing" width="350"/>
-
 ## Overview
 Application that downloads and renders CV of mine.
+
+<img src="https://github.com/sliskiCode/CV/blob/master/static/screenshot.png?raw=true" alt="drawing" width="350"/>
 
 ### Features
 + Displaying list of CV items (photo, summary, personal development, job positions and hobbies). 
