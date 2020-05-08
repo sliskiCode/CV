@@ -5,7 +5,7 @@ CI](https://circleci.com/gh/sliskiCode/CV.svg?style=svg)](https://circleci.com/g
 
 - [Overview](#overview)
 - [Architecture](#architecture)
-- [Testing](#testing-strategy)
+- [Testing Strategy](#testing-strategy)
 - [Prerequisites](#prerequisites)
 - [Main 3rd party libraries](#main-3rd-party-libraries)
 
@@ -83,7 +83,7 @@ Build #AI-192.7142.36.36.6308749, built on March 18, 2020
 - [Koin](https://github.com/InsertKoinIO/koin) to separate object creation from object usages.
 
 ##### Asynchronous programming
-- [Kotlin Coroutines](https://github.com/Kotlin/kotlinx.coroutines) to run transformations and reduction asynchronously.
+- [Kotlin Coroutines](https://github.com/Kotlin/kotlinx.coroutines) to run transformations and reductions asynchronously.
 
 ##### Testing
 - [jUnit5](https://junit.org/junit5/docs/current/user-guide/)
