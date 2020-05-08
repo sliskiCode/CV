@@ -24,7 +24,7 @@ Application that downloads and renders CV of mine.
 ![](static/diagram.png)
 
 ### View
-View(Activity) is responsible for gluing `ViewModel` class with rendering function. Besides, it is responsible for sending intention actions that can be anything like user interaction or system callbacks. The `View` should not contain any rendering, business logic.
+`View`(Activity) is responsible for gluing `ViewModel` class with rendering function. Besides, it is responsible for sending intention actions that can be anything like user interaction or system callbacks. The `View` should not contain any rendering, business logic.
 
 ### ViewModel
 `ViewModel` has a definition of supported intentions. Every action that `View` sends to the `ViewModel` has to be declared as intention.
