@@ -5,7 +5,7 @@ CI](https://circleci.com/gh/sliskiCode/CV.svg?style=svg)](https://circleci.com/g
 
 - [Overview](#overview)
 - [Architecture](#architecture)
-- [Testing](#testing strategy)
+- [Testing](#testing-strategy)
 - [Prerequisites](#prerequisites)
 - [Main 3rd party libraries](#main-3rd-party-libraries)
 
