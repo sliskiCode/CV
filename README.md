@@ -1,10 +1,6 @@
 [![Circle
 CI](https://circleci.com/gh/sliskiCode/CV.svg?style=svg)](https://circleci.com/gh/sliskiCode/CV)
 
-Prerequisites:
-Android Studio 3.6.2
-Build #AI-192.7142.36.36.6308749, built on March 18, 2020
-
 ## CV
 
 - [Overview](#overview)
@@ -87,3 +83,8 @@ Project has two modules:
 Codebase is tested using two different strategies:
 - Business logic and Repository is tested using jUnit 5 tests.
 - Rendering logic is tested using Robolectric jUnit 4 tests.
+
+## Prerequisites
+Stable build with: 
+Android Studio 3.6.2
+Build #AI-192.7142.36.36.6308749, built on March 18, 2020
