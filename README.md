@@ -46,7 +46,7 @@ Render function has to be pure! It cannot use any properties outside of its scop
 `RecyclerView` I use [Groupie](https://github.com/lisawray/groupie) library. It also makes rendering logic more declarative.
 
 ### Dependency Inversion
-Dependency Inversion is implemented with the Koin dependency injection framework. It simplifies the separation of objects' creations and their usages. In addition, Koin has a pretty
+Dependency Inversion is implemented with the [Koin](https://github.com/InsertKoinIO/koin) dependency injection framework. It simplifies the separation of objects' creations and their usages. In addition, Koin has a pretty
 easy integration with Architecture Component's `ViewModel` class so it simplifies gluing it with view layer.
 
 ### Packaging
