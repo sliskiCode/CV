@@ -2,7 +2,7 @@ package com.slesarew.cv.cvscreen.model
 
 import com.slesarew.cv.repository.model.Position
 
-typealias Reduction = suspend (Any, CVState) -> CVState
+private typealias Reduction = suspend (Any, CVState) -> CVState
 
 class CVReducers {
 

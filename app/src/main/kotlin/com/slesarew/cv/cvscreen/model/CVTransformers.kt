@@ -7,7 +7,7 @@ import com.slesarew.cv.cvscreen.model.CVDataStatus.Ready
 import com.slesarew.cv.repository.CVRepository
 import java.net.UnknownHostException
 
-typealias Transformation = suspend (CVAction) -> CVDataStatus
+private typealias Transformation = suspend (CVAction) -> CVDataStatus
 
 class CVTransformers(
     private val repository: CVRepository,
