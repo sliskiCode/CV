@@ -1,3 +1,6 @@
+[![Circle
+CI](https://circleci.com/gh/sliskiCode/CV.svg?style=svg)](https://circleci.com/gh/sliskiCode/CV)
+
 ## CV
 
 - [Overview](#overview)
