@@ -28,7 +28,7 @@ Application that downloads and renders CV of mine.
 
 ### ViewModel
 `ViewModel` has a definition of supported intentions. Every action that `View` sends to the `ViewModel` has to be declared as intention.
-Intention reacts to the action with action transformation that produces unique status. In our case transformation is a backend call that downloads CV data. Transformed data are not ready to be displayed so intention uses reduction function to generate new immutable state. A new
+Intention reacts to the action with action transformation that produces unique status. In this case transformation is a backend call that downloads CV data. Transformed data are not ready to be displayed so intention uses reduction function to generate new immutable state. A new
 state is pushed to the `View` layer and renders there. All intention actions are transformed asynchronously and that is baked into [ConnectableViewModel](../../blob/master/mvi/src/main/kotlin/com/slesarew/mvi/ConnectableViewModel.kt).
 
 #### Transformer
