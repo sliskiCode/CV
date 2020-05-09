@@ -27,6 +27,14 @@ Application that downloads and renders CV of mine.
 ### View
 `View`(Activity) is responsible for gluing `ViewModel` class with rendering function. Besides, it is responsible for sending intention actions that can be anything like user interaction or system callbacks. The `View` should not contain any rendering, business logic.
 
+#### Renderer
+A [Renderer](../../blob/master/app/src/main/kotlin/com/slesarew/cv/cvscreen/view/renderer/CVRenderer.kt) is a simple class that uses `RecyclerView` as the main render engine. It has two main responsibilities:
+- Setup `RecyclerView` with correct adapter class.
+- Transform immutable view state to adapter items and render them on the screen.
+
+Render function has to be pure! It cannot use any properties outside of its scope. To simplify working with
+`RecyclerView` I use [Groupie](https://github.com/lisawray/groupie) library. It also makes rendering logic more declarative.
+
 ### ViewModel
 `ViewModel` has a definition of supported intentions. Every action that `View` sends to the `ViewModel` has to be declared as intention.
 Intention reacts to the action with action transformation that produces unique status. In this case transformation is a backend call that downloads CV data. Transformed data are not ready to be displayed so intention uses reduction function to generate new immutable state. A new
@@ -37,14 +45,6 @@ A function that transforms Action to Status data. Can be a backend call that ret
 
 #### Reducer
 A pure function that reduces the current state of the screen using transformation status data.
-
-### Renderer
-A [Renderer](../../blob/master/app/src/main/kotlin/com/slesarew/cv/cvscreen/view/renderer/CVRenderer.kt) is a simple class that uses `RecyclerView` as the main render engine. It has two main responsibilities:
-- Setup `RecyclerView` with correct adapter class.
-- Transform immutable view state to adapter items and render them on the screen.
-
-Render function has to be pure! It cannot use any properties outside of its scope. To simplify working with
-`RecyclerView` I use [Groupie](https://github.com/lisawray/groupie) library. It also makes rendering logic more declarative.
 
 ### Dependency Inversion
 Dependency Inversion is implemented with the [Koin](https://github.com/InsertKoinIO/koin) dependency injection framework. It simplifies the separation of objects' creations and their usages. In addition, Koin has a pretty
