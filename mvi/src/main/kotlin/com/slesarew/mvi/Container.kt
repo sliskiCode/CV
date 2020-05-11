@@ -24,7 +24,7 @@ class Container<ACTION : Any, STATE : Any> {
         val transformation = transformations[action::class]?.also { it.sideEffect(state) }
 
         transformation ?: throw IllegalStateException(
-            "Action not supported. Please declare transformation using intentionOn(action = ${action::class.simpleName}:class)"
+            "Action not supported. Please define intention using: intentionOn(action = ${action::class.simpleName}:class)"
         )
 
         val reductionState = async {
