@@ -31,12 +31,9 @@ abstract class ConnectableViewModel<ACTION : Any, STATE : Any>(
     fun connect(stateConsumer: (STATE) -> Unit) = connectAndPushInitialState(stateConsumer)
 
     @VisibleForTesting
-    fun connectInTest(): List<STATE> {
-        connectAndPushInitialState {}
-        return states
-    }
+    fun testConnect(): List<STATE> = states.also { connectAndPushInitialState() }
 
-    private fun connectAndPushInitialState(stateConsumer: (STATE) -> Unit) {
+    private fun connectAndPushInitialState(stateConsumer: (STATE) -> Unit = {}) {
         this.stateConsumer = {
             states.add(it)
             stateConsumer.invoke(it)

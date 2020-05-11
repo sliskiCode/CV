@@ -53,7 +53,7 @@ class CVViewModelTest {
     @Test
     fun `loads data on OnScreenCreateAction`() {
         val tested = CVViewModel(transformerWithData(data), CVReducers(), sideEffects())
-        val states = tested.connectInTest()
+        val states = tested.testConnect()
 
         tested.sendAction(OnScreenCreateAction)
 
@@ -99,7 +99,7 @@ class CVViewModelTest {
     @ArgumentsSource(ErrorProvider::class)
     fun `produces error state`(error: Throwable) {
         val tested = CVViewModel(transformerWithError(error), CVReducers(), sideEffects())
-        val states = tested.connectInTest()
+        val states = tested.testConnect()
 
         tested.sendAction(OnScreenCreateAction)
 
