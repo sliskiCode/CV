@@ -7,58 +7,37 @@ import kotlin.reflect.KClass
 class Container<ACTION : Any, STATE : Any> {
 
     private val transformations =
-        mutableMapOf<KClass<out ACTION>, IntentionTransformation<ACTION, Any, STATE>>()
-
-    private val sideEffects =
-        mutableMapOf<KClass<out ACTION>, IntentionSideEffect<STATE>>()
+        mutableMapOf<KClass<out ACTION>, Intention<ACTION, Any, STATE>>()
 
     fun intentionOn(
         action: KClass<out ACTION>,
-        block: IntentionTransformation<ACTION, Any, STATE>.() -> Unit
+        block: Intention<ACTION, Any, STATE>.() -> Unit
     ) {
-        transformations[action] = IntentionTransformation<ACTION, Any, STATE>().apply(block)
-    }
-
-    fun sideEffectIntentionOn(
-        action: KClass<out ACTION>,
-        block: IntentionSideEffect<STATE>.() -> Unit
-    ) {
-        sideEffects[action] = IntentionSideEffect<STATE>().apply(block)
+        transformations[action] = Intention<ACTION, Any, STATE>().apply(block)
     }
 
     suspend fun consume(
         state: STATE,
         action: ACTION,
         stateConsumer: (STATE) -> Unit
-    ) {
-        val intentionSideEffect = sideEffects[action::class]
-        if (intentionSideEffect != null) {
-            intentionSideEffect.sideEffect(state)
-        } else {
-            coroutineScope {
-                val reductionState = async {
-                    val transformedState: STATE? = transformations[action::class]?.let {
-                        val transformationStatus = it.transform(action)
-                        it.reduce(transformationStatus, state)
-                    }
+    ) = coroutineScope {
+        val transformation = transformations[action::class]?.also { it.sideEffect(state) }
 
-                    transformedState
-                        ?: throw IllegalStateException(
-                            "Action not supported. Please declare transformation using intentionOn(action = ${action::class.simpleName}:class)"
-                        )
-                }
+        transformation ?: throw IllegalStateException(
+            "Action not supported. Please declare transformation using intentionOn(action = ${action::class.simpleName}:class)"
+        )
 
-                stateConsumer(reductionState.await())
-            }
+        val reductionState = async {
+            val status = transformation.transform(action)
+            status?.let { transformation.reduce(status, state) } ?: state
         }
+
+        stateConsumer(reductionState.await())
     }
 }
 
-class IntentionTransformation<ACTION : Any, STATUS : Any, STATE : Any> {
-    lateinit var transform: suspend (ACTION) -> STATUS
+class Intention<ACTION : Any, STATUS : Any, STATE : Any> {
+    var transform: suspend (ACTION) -> STATUS? = { null }
     var reduce: suspend ((STATUS, STATE) -> STATE) = { _, state -> state }
-}
-
-class IntentionSideEffect<STATE : Any> {
     var sideEffect: (STATE) -> Unit = {}
 }

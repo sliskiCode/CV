@@ -17,15 +17,15 @@ class CVViewModel(
         reduce = reducers.reduceCVData()
     }
 
-    sideEffectIntentionOn(action = OnMediumClickedAction::class) {
+    intentionOn(action = OnMediumClickedAction::class) {
         sideEffect = sideEffects.navigateToMediumPage()
     }
 
-    sideEffectIntentionOn(action = OnStackOverflowClickedAction::class) {
+    intentionOn(action = OnStackOverflowClickedAction::class) {
         sideEffect = sideEffects.navigateToStackOverflow()
     }
 
-    sideEffectIntentionOn(action = OnYouTubeClickedAction::class) {
+    intentionOn(action = OnYouTubeClickedAction::class) {
         sideEffect = sideEffects.navigateToYouTube()
     }
 })

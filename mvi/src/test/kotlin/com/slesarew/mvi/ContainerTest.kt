@@ -72,7 +72,7 @@ class ContainerTest {
     @Test
     fun `runs action as side effect`() {
         val function = mock<(TestState) -> Unit>()
-        tested.sideEffectIntentionOn(action = GoTo::class) {
+        tested.intentionOn(action = GoTo::class) {
             sideEffect = function
         }
 
