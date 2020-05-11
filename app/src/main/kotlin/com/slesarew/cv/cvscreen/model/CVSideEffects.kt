@@ -5,18 +5,17 @@ import android.net.Uri
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.content.ContextCompat.getColor
 import com.slesarew.cv.R
-
-private typealias SideEffect = (CVState) -> Unit
+import com.slesarew.mvi.SideEffect
 
 class CVSideEffects(private val activity: Activity) {
 
-    fun navigateToMediumPage(): SideEffect =
+    fun navigateToMediumPage(): SideEffect<CVState> =
         { state -> openExternalURL(state.links.mediumUrl) }
 
-    fun navigateToStackOverflow(): SideEffect =
+    fun navigateToStackOverflow(): SideEffect<CVState> =
         { state -> openExternalURL(state.links.stackOverflowUrl) }
 
-    fun navigateToYouTube(): SideEffect =
+    fun navigateToYouTube(): SideEffect<CVState> =
         { state -> openExternalURL(state.links.youtubeUrl) }
 
     private fun openExternalURL(url: String) {

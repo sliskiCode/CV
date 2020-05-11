@@ -5,9 +5,8 @@ import com.slesarew.cv.R
 import com.slesarew.cv.cvscreen.model.CVDataStatus.Error
 import com.slesarew.cv.cvscreen.model.CVDataStatus.Ready
 import com.slesarew.cv.repository.CVRepository
+import com.slesarew.mvi.Transform
 import java.net.UnknownHostException
-
-private typealias Transformation = suspend (CVAction) -> CVDataStatus
 
 class CVTransformers(
     private val repository: CVRepository,
@@ -15,7 +14,7 @@ class CVTransformers(
 ) {
 
     @Suppress("TooGenericExceptionCaught")
-    fun loadCVData(): Transformation = { action ->
+    fun loadCVData(): Transform<CVAction, CVDataStatus> = { action ->
         require(action is CVAction.OnScreenCreateAction)
 
         try {

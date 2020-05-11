@@ -35,9 +35,3 @@ class Container<ACTION : Any, STATE : Any> {
         stateConsumer(reductionState.await())
     }
 }
-
-class Intention<ACTION : Any, STATUS : Any, STATE : Any> {
-    var transform: suspend (ACTION) -> STATUS? = { null }
-    var reduce: suspend ((STATUS, STATE) -> STATE) = { _, state -> state }
-    var sideEffect: (STATE) -> Unit = {}
-}

@@ -1,12 +1,11 @@
 package com.slesarew.cv.cvscreen.model
 
 import com.slesarew.cv.repository.model.Position
-
-private typealias Reduction = suspend (Any, CVState) -> CVState
+import com.slesarew.mvi.Reduce
 
 class CVReducers {
 
-    fun reduceCVData(): Reduction = { status, state ->
+    fun reduceCVData(): Reduce<Any, CVState> = { status, state ->
         when (status) {
             is CVDataStatus.Ready -> status.cvData.let { data ->
                 state.copy(
