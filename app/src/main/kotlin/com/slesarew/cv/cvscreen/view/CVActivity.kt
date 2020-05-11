@@ -19,20 +19,20 @@ import org.koin.core.parameter.parametersOf
 
 class CVActivity : AppCompatActivity() {
 
-    private val cvViewModel by viewModel<CVViewModel> { parametersOf(this@CVActivity) }
+    private val viewModel by viewModel<CVViewModel> { parametersOf(this@CVActivity) }
 
-    private val cvRenderer by inject<CVRenderer>()
+    private val renderer by inject<CVRenderer>()
 
     @ExperimentalStdlibApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_content)
-        cvRenderer.prepare(content)
+        renderer.prepare(content)
 
-        cvViewModel.connect { cvRenderer.render(it) }
+        viewModel.connect { renderer.render(it) }
 
-        if (savedInstanceState == null) cvViewModel.sendAction(OnScreenCreateAction)
+        if (savedInstanceState == null) viewModel.sendAction(OnScreenCreateAction)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -48,5 +48,5 @@ class CVActivity : AppCompatActivity() {
             else -> super.onOptionsItemSelected(item)
         }
 
-    private fun sendAction(action: CVAction) = cvViewModel.sendAction(action).let { true }
+    private fun sendAction(action: CVAction) = viewModel.sendAction(action).let { true }
 }
