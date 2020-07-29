@@ -10,7 +10,7 @@ object Versions {
     const val androidMinSdk = 23
 
     // Environment
-    const val androidGradlePluginVersion = "3.6.3"
+    const val androidGradlePluginVersion = "4.0.1"
 
     // Kotlin
     const val kotlinVersion = "1.3.61"
