@@ -20,7 +20,7 @@ class ContainerTest {
     private val tested = Container<TestAction, TestState>()
 
     @Test
-    fun `transform action to status`() {
+    fun `transforms action to status`() {
         val status = "1337"
         val expected = TestState("1337")
 
@@ -71,7 +71,7 @@ class ContainerTest {
 
     @Test
     fun `runs action as side effect`() {
-        val function = mock<(TestState) -> Unit>()
+        val function = mock<(TestState, TestAction) -> Unit>()
         tested.intentionOn(action = GoTo::class) {
             sideEffect = function
         }
@@ -80,6 +80,36 @@ class ContainerTest {
             tested.consume(TestState(), GoTo) {}
         }
 
-        verify(function).invoke(TestState())
+        verify(function).invoke(TestState(), GoTo)
+    }
+
+    @Test
+    fun `sends loopback action back to the container`() {
+        val status = "1337"
+        val expected = TestState("1337")
+
+        tested.intentionOn(action = GoTo::class) {
+            transform = { status }
+            reduce = { status, state ->
+                require(status is String)
+
+                state.copy(
+                    id = status
+                )
+            }
+        }
+
+        val function = mock<(TestState, TestAction) -> Unit>()
+        tested.intentionOn(action = GoTo2::class) {
+            sideEffect = function
+            loopBack = GoTo
+        }
+
+        runBlocking {
+            tested.consume(TestState(), GoTo2) { actual ->
+                assertThat(actual).isEqualTo(expected)
+                verify(function).invoke(TestState(), GoTo2)
+            }
+        }
     }
 }

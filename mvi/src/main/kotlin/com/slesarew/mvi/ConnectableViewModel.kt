@@ -14,7 +14,7 @@ abstract class ConnectableViewModel<ACTION : Any, STATE : Any>(
 
     private val states = mutableListOf<STATE>()
 
-    private var currentState: STATE = initialState
+    var currentState: STATE = initialState
 
     private val container: Container<ACTION, STATE> =
         Container<ACTION, STATE>().apply { block(currentState) }
