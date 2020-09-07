@@ -1,7 +1,7 @@
 package com.slesarew.mvi
 
 typealias Transform<ACTION, STATUS> = suspend (ACTION) -> STATUS
-typealias Reduce<STATUS, STATE> = suspend ((STATUS, STATE) -> STATE)
+typealias Reduce<STATUS, STATE> = suspend (STATUS, STATE) -> STATE
 typealias SideEffect<STATE, ACTION> = (STATE, ACTION) -> Unit
 
 class Intention<ACTION : Any, STATUS : Any, STATE : Any> {

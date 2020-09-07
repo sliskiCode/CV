@@ -9,14 +9,14 @@ import com.slesarew.mvi.SideEffect
 
 class CvSideEffects(private val activity: Activity) {
 
-    fun navigateToMediumPage(): SideEffect<CVState> =
-        { state -> openExternalURL(state.links.mediumUrl) }
+    fun navigateToMediumPage(): SideEffect<CVState, CvAction> =
+        { state, _ -> openExternalURL(state.links.mediumUrl) }
 
-    fun navigateToStackOverflow(): SideEffect<CVState> =
-        { state -> openExternalURL(state.links.stackOverflowUrl) }
+    fun navigateToStackOverflow(): SideEffect<CVState, CvAction> =
+        { state, _ -> openExternalURL(state.links.stackOverflowUrl) }
 
-    fun navigateToYouTube(): SideEffect<CVState> =
-        { state -> openExternalURL(state.links.youtubeUrl) }
+    fun navigateToYouTube(): SideEffect<CVState, CvAction> =
+        { state, _ -> openExternalURL(state.links.youtubeUrl) }
 
     private fun openExternalURL(url: String) {
         if (url.isNotEmpty()) {

@@ -5,6 +5,7 @@ import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.slesarew.mvi.TestAction.GoTo
 import com.slesarew.mvi.TestAction.GoTo2
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Test
 
@@ -36,7 +37,7 @@ class ContainerTest {
         }
 
         runBlocking {
-            tested.consume(TestState(), GoTo) { actual ->
+            tested.consume(TestState(), GoTo, Dispatchers.Unconfined) { actual ->
                 assertThat(actual).isEqualTo(expected)
             }
         }
@@ -52,7 +53,7 @@ class ContainerTest {
         }
 
         runBlocking {
-            tested.consume(initialState, GoTo) { actual ->
+            tested.consume(initialState, GoTo, Dispatchers.Unconfined) { actual ->
                 assertThat(actual).isSameAs(initialState)
             }
         }
@@ -62,7 +63,7 @@ class ContainerTest {
     fun `does not transform unsupported action`() {
         runBlocking {
             val runCatching = runCatching {
-                tested.consume(TestState(), GoTo2) { }
+                tested.consume(TestState(), GoTo2, Dispatchers.Unconfined) { }
             }
 
             assertThat(runCatching.isFailure).isTrue()
@@ -77,7 +78,7 @@ class ContainerTest {
         }
 
         runBlocking {
-            tested.consume(TestState(), GoTo) {}
+            tested.consume(TestState(), GoTo, Dispatchers.Unconfined) {}
         }
 
         verify(function).invoke(TestState(), GoTo)
@@ -106,7 +107,7 @@ class ContainerTest {
         }
 
         runBlocking {
-            tested.consume(TestState(), GoTo2) { actual ->
+            tested.consume(TestState(), GoTo2, Dispatchers.Unconfined) { actual ->
                 assertThat(actual).isEqualTo(expected)
                 verify(function).invoke(TestState(), GoTo2)
             }

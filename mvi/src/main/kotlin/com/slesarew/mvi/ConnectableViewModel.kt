@@ -3,6 +3,8 @@ package com.slesarew.mvi
 import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 abstract class ConnectableViewModel<ACTION : Any, STATE : Any>(
@@ -19,9 +21,9 @@ abstract class ConnectableViewModel<ACTION : Any, STATE : Any>(
     private val container: Container<ACTION, STATE> =
         Container<ACTION, STATE>().apply { block(currentState) }
 
-    fun sendAction(action: ACTION) {
+    fun sendAction(action: ACTION, dispatcher: CoroutineDispatcher = Dispatchers.IO) {
         viewModelScope.launch {
-            container.consume(currentState, action) {
+            container.consume(currentState, action, dispatcher) {
                 currentState = it
                 stateConsumer(currentState)
             }

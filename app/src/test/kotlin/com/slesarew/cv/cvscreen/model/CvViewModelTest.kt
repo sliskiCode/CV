@@ -13,6 +13,7 @@ import com.slesarew.cv.helpers.ArgumentsListProvider
 import com.slesarew.cv.helpers.CoroutineExtension
 import com.slesarew.cv.repository.model.CVData
 import com.slesarew.cv.repository.model.Position
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
@@ -101,7 +102,7 @@ class CvViewModelTest {
         val tested = CvViewModel(transformerWithError(error), CvReducers(), sideEffects())
         val states = tested.testConnect()
 
-        tested.sendAction(OnScreenCreateAction)
+        tested.sendAction(OnScreenCreateAction, Dispatchers.Unconfined)
 
         assertThat(states[0]).isEqualTo(CVState())
         assertThat(states[1]).isEqualTo(
@@ -113,35 +114,35 @@ class CvViewModelTest {
 
     @Test
     fun `navigates to medium page`() {
-        val navigateToMediumPage = mock<(CVState) -> Unit>()
+        val navigateToMediumPage = mock<(CVState, CvAction) -> Unit>()
         val sideEffects = sideEffects(navigateToMediumPage = navigateToMediumPage)
         val tested = CvViewModel(transformerWithData(data), CvReducers(), sideEffects)
 
-        tested.sendAction(OnMediumClickedAction)
+        tested.sendAction(OnMediumClickedAction, Dispatchers.Unconfined)
 
-        verify(navigateToMediumPage).invoke(CVState())
+        verify(navigateToMediumPage).invoke(CVState(), OnMediumClickedAction)
     }
 
     @Test
     fun `navigates to stack overflow page`() {
-        val navigateToStackOverflow = mock<(CVState) -> Unit>()
+        val navigateToStackOverflow = mock<(CVState, CvAction) -> Unit>()
         val sideEffects = sideEffects(navigateToStackOverflow = navigateToStackOverflow)
         val tested = CvViewModel(transformerWithData(data), CvReducers(), sideEffects)
 
-        tested.sendAction(OnStackOverflowClickedAction)
+        tested.sendAction(OnStackOverflowClickedAction, Dispatchers.Unconfined)
 
-        verify(navigateToStackOverflow).invoke(CVState())
+        verify(navigateToStackOverflow).invoke(CVState(), OnStackOverflowClickedAction)
     }
 
     @Test
     fun `navigates to you tube page`() {
-        val navigateToYouTube = mock<(CVState) -> Unit>()
+        val navigateToYouTube = mock<(CVState, CvAction) -> Unit>()
         val sideEffects = sideEffects(navigateToYouTube = navigateToYouTube)
         val tested = CvViewModel(transformerWithData(data), CvReducers(), sideEffects)
 
-        tested.sendAction(OnYouTubeClickedAction)
+        tested.sendAction(OnYouTubeClickedAction, Dispatchers.Unconfined)
 
-        verify(navigateToYouTube).invoke(CVState())
+        verify(navigateToYouTube).invoke(CVState(), OnYouTubeClickedAction)
     }
 }
 
@@ -159,9 +160,9 @@ private fun transformerWithError(throwable: Throwable) = CvTransformers(
 )
 
 private fun sideEffects(
-    navigateToMediumPage: (CVState) -> Unit = {},
-    navigateToStackOverflow: (CVState) -> Unit = {},
-    navigateToYouTube: (CVState) -> Unit = {}
+    navigateToMediumPage: (CVState, CvAction) -> Unit = { _, _ -> },
+    navigateToStackOverflow: (CVState, CvAction) -> Unit = { _, _ -> },
+    navigateToYouTube: (CVState, CvAction) -> Unit = { _, _ -> }
 ) = mock<CvSideEffects> {
     on { navigateToMediumPage() }.thenReturn(navigateToMediumPage)
     on { navigateToStackOverflow() }.thenReturn(navigateToStackOverflow)

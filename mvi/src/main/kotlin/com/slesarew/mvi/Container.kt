@@ -1,6 +1,6 @@
 package com.slesarew.mvi
 
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 import kotlin.reflect.KClass
 
@@ -16,24 +16,17 @@ class Container<ACTION : Any, STATE : Any> {
         intentions[action] = Intention<ACTION, Any, STATE>().apply(block)
     }
 
-    fun intentionOn(
-        actions: Array<KClass<out ACTION>>,
-        block: Intention<ACTION, Any, STATE>.() -> Unit
-    ) {
-        val intention = Intention<ACTION, Any, STATE>().apply(block)
-        actions.forEach { intentions[it] = intention }
-    }
-
     suspend fun consume(
         state: STATE,
         action: ACTION,
+        dispatcher: CoroutineDispatcher,
         stateConsumer: (STATE) -> Unit
     ) {
         val intention = requireNotNull(intentions[action::class]) {
             "Action not supported. Please define intention using: intentionOn(action = ${action::class.simpleName}:class)"
         }
 
-        val reducedState = withContext(Dispatchers.IO) {
+        val reducedState = withContext(dispatcher) {
             val transformedStatus = intention.transform?.invoke(action)
 
             if (transformedStatus == null) {
@@ -51,6 +44,7 @@ class Container<ACTION : Any, STATE : Any> {
             consume(
                 state = reducedState ?: state,
                 action = loopBackAction,
+                dispatcher = dispatcher,
                 stateConsumer = stateConsumer
             )
         }

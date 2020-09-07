@@ -1,5 +1,7 @@
 package com.slesarew.mvi
 
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
@@ -17,9 +19,12 @@ abstract class ActionContainer<ACTION : Any, STATE : Any>(
     private val container: Container<ACTION, STATE> =
         Container<ACTION, STATE>().apply { block(currentState) }
 
-    fun sendAction(action: ACTION) {
+    fun sendAction(
+        action: ACTION,
+        dispatcher: CoroutineDispatcher = Dispatchers.IO
+    ) {
         GlobalScope.launch {
-            container.consume(currentState, action) {
+            container.consume(currentState, action, dispatcher) {
                 currentState = it
                 stateConsumer(currentState)
             }
