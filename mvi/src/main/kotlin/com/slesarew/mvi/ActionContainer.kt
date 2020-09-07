@@ -5,6 +5,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
+@SuppressWarnings("UnnecessaryAbstractClass")
 abstract class ActionContainer<ACTION : Any, STATE : Any>(
     initialState: STATE,
     block: Container<ACTION, STATE>.(STATE) -> Unit
