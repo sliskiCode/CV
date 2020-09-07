@@ -56,7 +56,7 @@ class CvViewModelTest {
         val tested = CvViewModel(transformerWithData(data), CvReducers(), sideEffects())
         val states = tested.testConnect()
 
-        tested.sendAction(OnScreenCreateAction)
+        tested.sendAction(OnScreenCreateAction, Dispatchers.Unconfined)
 
         assertThat(states[0]).isEqualTo(CVState())
         assertThat(states[1]).isEqualTo(
