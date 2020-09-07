@@ -1,16 +1,16 @@
 package com.slesarew.cv.cvscreen.model
 
-import com.slesarew.cv.cvscreen.model.CVAction.OnMediumClickedAction
-import com.slesarew.cv.cvscreen.model.CVAction.OnScreenCreateAction
-import com.slesarew.cv.cvscreen.model.CVAction.OnStackOverflowClickedAction
-import com.slesarew.cv.cvscreen.model.CVAction.OnYouTubeClickedAction
+import com.slesarew.cv.cvscreen.model.CvAction.OnMediumClickedAction
+import com.slesarew.cv.cvscreen.model.CvAction.OnScreenCreateAction
+import com.slesarew.cv.cvscreen.model.CvAction.OnStackOverflowClickedAction
+import com.slesarew.cv.cvscreen.model.CvAction.OnYouTubeClickedAction
 import com.slesarew.mvi.ConnectableViewModel
 
-class CVViewModel(
-    transformers: CVTransformers,
-    reducers: CVReducers,
-    sideEffects: CVSideEffects
-) : ConnectableViewModel<CVAction, CVState>(CVState(), {
+class CvViewModel(
+    transformers: CvTransformers,
+    reducers: CvReducers,
+    sideEffects: CvSideEffects
+) : ConnectableViewModel<CvAction, CVState>(CVState(), {
 
     intentionOn(action = OnScreenCreateAction::class) {
         transform = transformers.loadCVData()

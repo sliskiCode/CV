@@ -7,7 +7,7 @@ import androidx.core.content.ContextCompat.getColor
 import com.slesarew.cv.R
 import com.slesarew.mvi.SideEffect
 
-class CVSideEffects(private val activity: Activity) {
+class CvSideEffects(private val activity: Activity) {
 
     fun navigateToMediumPage(): SideEffect<CVState> =
         { state -> openExternalURL(state.links.mediumUrl) }

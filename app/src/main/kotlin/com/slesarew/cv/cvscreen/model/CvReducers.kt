@@ -3,11 +3,11 @@ package com.slesarew.cv.cvscreen.model
 import com.slesarew.cv.repository.model.Position
 import com.slesarew.mvi.Reduce
 
-class CVReducers {
+class CvReducers {
 
     fun reduceCVData(): Reduce<Any, CVState> = { status, state ->
         when (status) {
-            is CVDataStatus.Ready -> status.cvData.let { data ->
+            is CvDataStatus.Ready -> status.cvData.let { data ->
                 state.copy(
                     status = Status.Ready,
                     headerData = state.headerData.copy(
@@ -33,7 +33,7 @@ class CVReducers {
                     )
                 )
             }
-            is CVDataStatus.Error -> state.copy(
+            is CvDataStatus.Error -> state.copy(
                 status = Status.Error(status.message)
             )
             else -> state

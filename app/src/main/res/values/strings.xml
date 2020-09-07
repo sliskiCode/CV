@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CV</string>
+    <string name="app_name">Cv</string>
     <string name="summary">Summary</string>
     <string name="hobbies">Hobbies</string>
     <string name="technologies">Technologies: %s</string>

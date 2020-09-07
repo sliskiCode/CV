@@ -18,7 +18,7 @@ import com.xwray.groupie.GroupieViewHolder
 import com.xwray.groupie.Section
 import com.xwray.groupie.kotlinandroidextensions.Item
 
-class CVRenderer(private val context: Context) {
+class CvRenderer(private val context: Context) {
 
     private val section = Section()
 

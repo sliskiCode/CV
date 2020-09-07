@@ -26,13 +26,13 @@ import org.robolectric.annotation.Config
 
 @Config(sdk = [Build.VERSION_CODES.P])
 @RunWith(AndroidJUnit4::class)
-class CVRendererTest {
+class CvRendererTest {
 
     private val context = ApplicationProvider.getApplicationContext<Context>()
 
     private val recyclerView = RecyclerView(context)
 
-    private val tested = CVRenderer(context)
+    private val tested = CvRenderer(context)
 
     @After
     fun tearDown() = stopKoin()

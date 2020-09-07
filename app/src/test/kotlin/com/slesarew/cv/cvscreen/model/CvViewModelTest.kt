@@ -5,10 +5,10 @@ import com.google.gson.JsonSyntaxException
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.slesarew.cv.R
-import com.slesarew.cv.cvscreen.model.CVAction.OnMediumClickedAction
-import com.slesarew.cv.cvscreen.model.CVAction.OnScreenCreateAction
-import com.slesarew.cv.cvscreen.model.CVAction.OnStackOverflowClickedAction
-import com.slesarew.cv.cvscreen.model.CVAction.OnYouTubeClickedAction
+import com.slesarew.cv.cvscreen.model.CvAction.OnMediumClickedAction
+import com.slesarew.cv.cvscreen.model.CvAction.OnScreenCreateAction
+import com.slesarew.cv.cvscreen.model.CvAction.OnStackOverflowClickedAction
+import com.slesarew.cv.cvscreen.model.CvAction.OnYouTubeClickedAction
 import com.slesarew.cv.helpers.ArgumentsListProvider
 import com.slesarew.cv.helpers.CoroutineExtension
 import com.slesarew.cv.repository.model.CVData
@@ -22,7 +22,7 @@ import java.net.UnknownHostException
 
 @ExperimentalCoroutinesApi
 @ExtendWith(CoroutineExtension::class)
-class CVViewModelTest {
+class CvViewModelTest {
 
     private val data = CVData(
         name = "Jake",
@@ -52,7 +52,7 @@ class CVViewModelTest {
 
     @Test
     fun `loads data on OnScreenCreateAction`() {
-        val tested = CVViewModel(transformerWithData(data), CVReducers(), sideEffects())
+        val tested = CvViewModel(transformerWithData(data), CvReducers(), sideEffects())
         val states = tested.testConnect()
 
         tested.sendAction(OnScreenCreateAction)
@@ -98,7 +98,7 @@ class CVViewModelTest {
     @ParameterizedTest
     @ArgumentsSource(ErrorProvider::class)
     fun `produces error state`(error: Throwable) {
-        val tested = CVViewModel(transformerWithError(error), CVReducers(), sideEffects())
+        val tested = CvViewModel(transformerWithError(error), CvReducers(), sideEffects())
         val states = tested.testConnect()
 
         tested.sendAction(OnScreenCreateAction)
@@ -115,7 +115,7 @@ class CVViewModelTest {
     fun `navigates to medium page`() {
         val navigateToMediumPage = mock<(CVState) -> Unit>()
         val sideEffects = sideEffects(navigateToMediumPage = navigateToMediumPage)
-        val tested = CVViewModel(transformerWithData(data), CVReducers(), sideEffects)
+        val tested = CvViewModel(transformerWithData(data), CvReducers(), sideEffects)
 
         tested.sendAction(OnMediumClickedAction)
 
@@ -126,7 +126,7 @@ class CVViewModelTest {
     fun `navigates to stack overflow page`() {
         val navigateToStackOverflow = mock<(CVState) -> Unit>()
         val sideEffects = sideEffects(navigateToStackOverflow = navigateToStackOverflow)
-        val tested = CVViewModel(transformerWithData(data), CVReducers(), sideEffects)
+        val tested = CvViewModel(transformerWithData(data), CvReducers(), sideEffects)
 
         tested.sendAction(OnStackOverflowClickedAction)
 
@@ -137,7 +137,7 @@ class CVViewModelTest {
     fun `navigates to you tube page`() {
         val navigateToYouTube = mock<(CVState) -> Unit>()
         val sideEffects = sideEffects(navigateToYouTube = navigateToYouTube)
-        val tested = CVViewModel(transformerWithData(data), CVReducers(), sideEffects)
+        val tested = CvViewModel(transformerWithData(data), CvReducers(), sideEffects)
 
         tested.sendAction(OnYouTubeClickedAction)
 
@@ -145,12 +145,12 @@ class CVViewModelTest {
     }
 }
 
-private fun transformerWithData(data: CVData) = CVTransformers(
+private fun transformerWithData(data: CVData) = CvTransformers(
     mock { onBlocking { fetchCVData() }.thenReturn(data) },
     mock()
 )
 
-private fun transformerWithError(throwable: Throwable) = CVTransformers(
+private fun transformerWithError(throwable: Throwable) = CvTransformers(
     mock { onBlocking { fetchCVData() }.thenAnswer { throw throwable } },
     mock {
         on { getString(R.string.unknown_host_message) }.thenReturn("Error")
@@ -162,7 +162,7 @@ private fun sideEffects(
     navigateToMediumPage: (CVState) -> Unit = {},
     navigateToStackOverflow: (CVState) -> Unit = {},
     navigateToYouTube: (CVState) -> Unit = {}
-) = mock<CVSideEffects> {
+) = mock<CvSideEffects> {
     on { navigateToMediumPage() }.thenReturn(navigateToMediumPage)
     on { navigateToStackOverflow() }.thenReturn(navigateToStackOverflow)
     on { navigateToYouTube() }.thenReturn(navigateToYouTube)
